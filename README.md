@@ -32,6 +32,12 @@ Needs[SerialFramework`”]
 ```
 Note that you must have the package’s folder listed under the $Path variable of Mathematica. Without it, Mathematica would not be able to find the package with the Needs[“SerialFramework`”] command. You can check the $Path variable by simply running $Path in Mathematica.
 
+Afterwards, you can run for example
+```
+SerialFramework`ReadMessage[$dev, 1, 5]
+```
+Notice that you must write code on whatever platform you are using to interpret the protocol sent from Mathematica. We used mbed (on a Nucleo board) for the snake robot in the examples to receive commands from Mathematica.
+
 For more detailed information on the usage of functions please read the documentation.
 
 ## Contact
