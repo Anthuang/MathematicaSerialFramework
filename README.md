@@ -20,10 +20,10 @@ We aim to provide a platform where the user can perform tasks, control, and data
 All messages must follow the following format:
 
 **[Start][ID][Length][Instruction][Parameter 1]...[Parameter N][Checksum]**
-![flowchart](https://github.com/Anthuang/NucleoFramework/blob/master/img/serial_flowchart.png)
+![flowchart](https://github.com/Anthuang/MathematicaSerialFramework/blob/master/img/serial_flowchart.png)
 
 ## IMU Graphing Demo
-![demo](https://github.com/Anthuang/NucleoFramework/blob/master/img/imudemo.gif)
+![demo](https://github.com/Anthuang/MathematicaSerialFramework/blob/master/img/imudemo.gif)
 
 ## Contact
 For any comments or suggestions, please contact us at thomaseh@umich.edu
