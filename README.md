@@ -32,5 +32,7 @@ Needs[SerialFramework`”]
 ```
 Note that you must have the package’s folder listed under the $Path variable of Mathematica. Without it, Mathematica would not be able to find the package with the Needs[“SerialFramework`”] command. You can check the $Path variable by simply running $Path in Mathematica.
 
+For more detailed information on the usage of functions please read the documentation.
+
 ## Contact
 For any comments or suggestions, please contact us at thomaseh@umich.edu
