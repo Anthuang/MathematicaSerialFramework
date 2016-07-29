@@ -9,7 +9,7 @@ Please read the [documentation file](https://github.com/Anthuang/NucleoFramework
 We aim to provide a platform where the user can perform tasks, control, and data analysis together. This platform will be a better environment for researchers and programmers alike to interact with robots.
 ![purpose](https://github.com/Anthuang/NucleoFramework/blob/master/purpose.png)
 
-## Current Functionality
+## Functionality
 - [x] Serial communication
 - [x] Simple GUI and graphing
 - [ ] Improve speed of communication
