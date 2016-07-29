@@ -34,7 +34,7 @@ Note that you must have the package’s folder listed under the $Path variable o
 
 Afterwards, you can run for example
 ```
-$dev = SerialFramework`ConnectDevice[“/dev/cu.submoden1413”, 155200]
+$dev = SerialFramework`ConnectDevice[“/dev/cu.submoden1413”, 115200]
 SerialFramework`ReadMessage[$dev, 1, 5]
 ```
 Notice that you must write code on whatever platform you are using to interpret the protocol sent from Mathematica. We used mbed (on a Nucleo board) for the snake robot in the examples to receive commands from Mathematica.
