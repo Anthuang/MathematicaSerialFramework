@@ -27,7 +27,9 @@ All messages must follow the following format:
 
 ## Usage
 In order to use the package, you will need to run
-	Needs[SerialFramework`”]
+```
+Needs[SerialFramework`”]
+```
 Note that you must have the package’s folder listed under the $Path variable of Mathematica. Without it, Mathematica would not be able to find the package with the Needs[“SerialFramework`”] command. You can check the $Path variable by simply running $Path in Mathematica.
 
 ## Contact
