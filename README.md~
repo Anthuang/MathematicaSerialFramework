@@ -13,7 +13,7 @@ We aim to provide a platform where the user can perform tasks, control, and data
 - [x] Serial communication
 - [x] Simple GUI and graphing
 - [ ] Improve speed of communication
-- [ ] Communication between Mathematica and multiple connected devices
+- [ ] Communication between Mathematica and multiple boards
 - [ ] Communication between Mathematica and simulation applications
 
 ## Serial Protocol
