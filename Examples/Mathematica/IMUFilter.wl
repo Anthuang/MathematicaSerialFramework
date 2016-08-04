@@ -1,12 +1,42 @@
 (* ::Package:: *)
 
+(* ::Title:: *)
+(*IMU Filter*)
+
+
 BeginPackage["IMUFilter`"];
 
 
-IMUInit::usage="Initializes values.";
-IMUFilter::usage="Calculates Roll, Pitch, Yaw with input from IMU.";
-GyroCalibrate::usage="Calibrates the Gyroscope by calculating the average.";
-GetOffsets::usage="Returns the offsets.";
+IMUInit::usage="Initializes variables that are used in other functions. Must be called before any other functions are called.
+IMUInit[]
+
+Can also be called to reset all variables.
+";
+IMUFilter::usage="Calculates Roll, Pitch, Yaw with input from IMU.
+IMUFilter[dt_,gx_,gy_,gz_,ax_,ay_,az_,mx_,my_,mz_]
+
+Parameters:
+dt - change in time in seconds.
+gx, gy, gz - gyroscope data in three axis.
+ax, ay, az - accelerometer data in three axis.
+mx, my, mz - magnetometer data in three axis.
+
+Returns a list of three angles, {roll, pitch, yaw}, in degrees.
+";
+GyroCalibrate::usage="Calibrates the Gyroscope by calculating the average.
+GyroCalibrate[gx_,gy_,gz_]
+
+Parameters:
+gx, gy, gz - gyroscope data in three axis.
+
+How to use:
+Run this function in a While loop with the arguments as raw data collected from the gyroscope while keeping the gyroscope still. The longer the function is run, the better it will be calibrated.
+";
+GetOffsets::usage="Returns the offsets.
+GetOffsets[]
+
+Returns a list of offsets.
+";
 
 
 Begin["Private`"];
@@ -139,6 +169,7 @@ $gyroOffsetZ=Total[$gyroDataZ]/Length[$gyroDataZ];
 ];
 
 
+(*Not fully implemented and tested.*)
 AcceCalibrate[ax_,ay_,az_]:=Module[{},
 AppendTo[$acceDataX,ax];AppendTo[$acceDataY,ay];AppendTo[$acceDataZ,az];
 rangeX=Max[$acceDataX]-Min[$acceDataX];$acceOffsetX=rangeX/2;

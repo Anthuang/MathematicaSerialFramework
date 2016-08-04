@@ -7,39 +7,60 @@
 BeginPackage["SerialFramework`"];
 
 
-ConnectDevice::usage = "Connects through serial to DeviceAddress. Saves the connection to a global variable. Sets the baud rate to BaudRate.
+ConnectDevice::usage = "ConnectDevice[ DeviceAddress_: \[OpenCurlyDoubleQuote]\[CloseCurlyDoubleQuote], BaudRate_: 9600 ]
+Connects through serial to DeviceAddress. Sets the baud rate to BaudRate. Returns the connection to the device. This connection can be passed into the ReadMessage and WriteMessage functions.
 
 DeviceAddress depends on the operating system of the computer the device is connected to:
 Windows: \[OpenCurlyDoubleQuote]COM#\[CloseCurlyDoubleQuote]
 MacOS or Linux: \[OpenCurlyDoubleQuote]/dev/ttyXX\[CloseCurlyDoubleQuote] or \[OpenCurlyDoubleQuote]/dev/tty.usbserialXX\[CloseCurlyDoubleQuote] or something similar
 
-Default value of WriteMessageArgs: \[OpenCurlyDoubleQuote]\[CloseCurlyDoubleQuote] - does nothing.
-
+Default value of DeviceAddress: \[OpenCurlyDoubleQuote]\[CloseCurlyDoubleQuote] - connects to nothing.
 Default value of BaudRate: 9600 - default baud rate supported by most boards.
+
+Examples:
+ConnectDevice[\"/dev/cu.usbmodem1413\"] // for Mac or Linux users
+ConnectDevice[\"COM4\"] // for Windows users
 ";
-WriteMessage::usage = "WriteMessage[ WriteMessageArgs_: \[OpenCurlyDoubleQuote]\[CloseCurlyDoubleQuote] ]
-Send a write request to the connection global variable with the arguments as WriteMessageArgs. WriteMessage writes an instruction packet with the form [Start][ID][Length][Instruction][Parameter 1]...[Parameter N][Checksum] through serial. WriteMessageArgs are its parameters. The arguments are sent one after the other.
+WriteMessage::usage = "WriteMessage[ Device_: \[OpenCurlyDoubleQuote]\[CloseCurlyDoubleQuote], BoardID_: 1, WriteMessageArg_: 0, WriteMessage_: \[OpenCurlyDoubleQuote]\[CloseCurlyDoubleQuote] ]
+Send a write request to the connection Device to the board with ID BoardID with the arguments as WriteMessageArg and WriteMessage. WriteMessage writes an instruction packet with the form [Start][ID][Length][Instruction][WriteMessageArg][Parameter 1]...[Parameter N][Checksum].  Device is the connection to a device. BoardID is an integer which indicates the board to receive information from. WriteMessageArg indicates what to change and WriteMessage indicate what to change it to.
 
-WriteMessageArgs is an array of integers or floats.
+WriteMessageArg is an integer.
+WriteMessage is an array of integers or floats.
 
-Default value of WriteMessageArgs: \[OpenCurlyDoubleQuote]\[CloseCurlyDoubleQuote] - nothing is written.
+Default value of DeviceAddress: \[OpenCurlyDoubleQuote]\[CloseCurlyDoubleQuote] - reads from nothing.
+Default value of BoardID: 1 - reads from board with ID 1.
+Default value of WriteMessageArg: 0 - writes information to the board with argument as 0.
+Default value of WriteMessage: \[OpenCurlyDoubleQuote]\[CloseCurlyDoubleQuote] - writes nothing. This could unintentionally erase important data, so be careful.
+
+Examples:
+dev = ConnectDevice[\"/dev/cu.usbmodem1413\"]  // first connect to device and set a variable to save the connection
+WriteMessage[dev,1] // write \[OpenCurlyDoubleQuote]\[CloseCurlyDoubleQuote] to board with ID 1 through connection dev with default argument 0.
+WriteMessage[dev,1,2] // same as above except the argument is 2. 
+WriteMessage[dev,1,1,{40}] // write {40} with argument as 1.
+WriteMessage[dev,1,3,{45,45,45}] // write {45,45,45} with argument as 3.
 ";
-ReadMessage::usage = "Send a read request from the connection global variable with the argument as ReadMessageArg. ReadMessage writes an instruction packet with the form [Start][ID][Length][Instruction][Parameter][Checksum] through serial. ReadMessageArg is its only parameter. ReadMessageArg is an integer which is parsed in mbed. Depending on the integer, mbed can return different information through serial. ReadMessage returns values received from serial after the read request is sent.
+ReadMessage::usage = "ReadMessage[ Device_: \[OpenCurlyDoubleQuote]\[CloseCurlyDoubleQuote], BoardID_: 1, ReadMessageArg_: 0 ]
+Send a read request to the connection Device to the board with ID BoardID with the argument as ReadMessageArg. 
+ReadMessage writes an instruction packet with the form [Start][ID][Length][Instruction][ReadMessageArg][Checksum]. Device is the connection to a device . BoardID is an integer which indicates the board to receive information from. ReadMessageArg is an integer which is parsed in the connected device. Depending on the integer, mbed can return different information through serial. ReadMessage returns values received from serial after the read request is sent.
 
-Default value of ReadMessageArg: 0 - reads all information from the board.
-
-List of available arguments:
-0 - reads all information from the board.
-2 - gyroscope information
-3 - accelerometer information
-4 - magnetometer information
-5 - IMU calculated angles (roll, pitch, yaw)
-6 - all IMU information
+Default value of DeviceAddress: \[OpenCurlyDoubleQuote]\[CloseCurlyDoubleQuote] - reads from nothing.
+Default value of BoardID: 1 - reads from board with ID 1.
+Default value of ReadMessageArg: 0 - reads information from the board with argument as 0. 0 is usually used to return all information.
 
 Returns a string.
+
+Examples:
+dev = ConnectDevice[\"/dev/cu.usbmodem1413\"]  // first connect to device and set a variable to save the connection
+ReadMessage[dev,1] // read from board with ID 1 through connection dev with argument as default, 0.
+ReadMessage[dev,1, 2]  // same as above except the argument is 2.
 ";
 DisconnectDevice::usage = "DisconnectDevice[ ]
-Disconnects the device that is currently connect. Resets the connection global variable.
+Disconnects Device.
+Default value of Device: \[OpenCurlyDoubleQuote]\[CloseCurlyDoubleQuote] - does nothing.
+
+Example:
+dev = ConnectDevice[\"/dev/cu.usbmodem1413\"]
+DisconnectionDevice[dev] // disconnects the connection dev
 ";
 
 
