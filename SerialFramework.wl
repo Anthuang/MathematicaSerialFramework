@@ -4,6 +4,10 @@
 (*Serial Framework*)
 
 
+(* ::Text:: *)
+(*For more information about this package, check out the documentation.*)
+
+
 BeginPackage["SerialFramework`"];
 
 

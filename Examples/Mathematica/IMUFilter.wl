@@ -4,6 +4,12 @@
 (*IMU Filter*)
 
 
+(* ::Text:: *)
+(*This package is an example usage of our Serial Framework package to obtain and filter raw data received from robots. We implemented calibration of sensors and filtering of IMU data. We recommend complementing this package with the mbed class, since that is well tested.*)
+(**)
+(*Note: We wrote and tested this package using a Nucleo-F411RE development board. We have no control over errors that arise due to different boards. We sincerely apologize for any inconvenience.*)
+
+
 BeginPackage["IMUFilter`"];
 
 
