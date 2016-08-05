@@ -10,7 +10,7 @@
 (*Note: We wrote and tested this package using a Nucleo-F411RE development board. We have no control over errors that arise due to different boards. We sincerely apologize for any inconvenience.*)
 
 
-BeginPackage["NucleoFramework`"];
+BeginPackage["SnakeRobotVisualization`"];
 
 
 Init::usage="Initializes variables.
@@ -42,12 +42,6 @@ ReadSerialData[]
 How to use:
 Depending on what buttons are pressed, this function will return the data accordingly. This function runs a While Loop, which means that nothing else can be run while this function is running. Thus, this function should be run after the graphs are enabled.
 ";
-EnableGyr::usage="Enables gyroscope graph";
-EnableAcc::usage="Enables accelerometer graph";
-EnableMag::usage="Enables magnetometer graph";
-EnableIMU::usage="Enables IMU graph";
-EnableAngles::usage="Enable angles graph";
-SetAngles::usage="Sets angles for servos";
 
 
 Begin["`Private`"];
