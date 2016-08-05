@@ -5,7 +5,7 @@
 
 
 (* ::Text:: *)
-(*This package is an example usage of our Serial Framework package to display data obtained from robots. We implemented data visualization for data from the IMU and commands sent to the servos. This package must be complemented by the mbed class or else it may not function properly.*)
+(*This package is an example usage of our Serial Framework package to display data obtained from robots. We implemented data visualization for data from the IMU and commands sent to the servos. Data must be sent from mbed in order for these functions to work. For information on what arguments we used for the read and write functions, please check out the mbed files.*)
 (**)
 (*Note: We wrote and tested this package using a Nucleo-F411RE development board. We have no control over errors that arise due to different boards. We sincerely apologize for any inconvenience.*)
 
